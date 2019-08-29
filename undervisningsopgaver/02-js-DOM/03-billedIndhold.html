@@ -22,6 +22,7 @@
             text-align: center;
             background: red;
         }
+
     </style>
 </head>
 
@@ -30,11 +31,29 @@
     <div class="cirkel"></div>
 
     <script>
-        let firkantURL = `http://mabe-kea.dk/E19/pics/frog.png`;
-        let cirkelURL = `http://mabe-kea.dk/E19/pics/pig.png`;
+        const firkantURL = `http://mabe-kea.dk/E19/pics/frog.png`;
+        const cirkelURL = `http://mabe-kea.dk/E19/pics/pig.png`;
 
-        document.querySelector(".firkant").innerHTML = `<img src = ${firkantURL} alt ="grøn frø">`;
-        document.querySelector(".cirkel").innerHTML = `<img src = ${cirkelURL} alt ="rød gris">`;
+
+        //Variant med mere sikkerhed:
+        const firkant = document.querySelector(".firkant");
+        const imgF = document.createElement("img");
+        imgF.src = firkantURL;
+        imgF.alt = "grøn frø";
+        firkant.appendChild(imgF);
+
+        const cirkel = document.querySelector(".cirkel");
+        const imgF = document.createElement("img");
+        imgC.src = firkantURL;
+        imgC.alt = "lyserød gris";
+        firkant.appendChild(imgC);
+
+        //Dette kan også gøres med inner HTML men den ande måde er bedre
+        //        document.querySelector(".firkant").innerHTML = `<img src = ${firkantURL} alt ="grøn frø">`;
+        //        document.querySelector(".cirkel").innerHTML = `<img src = ${cirkelURL} alt ="rød gris">`;
+
     </script>
 
-</body></html>
+</body>
+
+</html>
