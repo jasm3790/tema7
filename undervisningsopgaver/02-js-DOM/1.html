@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!---------GITHUB OPGAVE 1---------->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            display: inline-block;
+            border-radius: 50%;
+            transition: .5s;
+        }
+
+        .marker {
+            background-color: blue;
+            border-radius: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+
+    <script>
+        //selectorall vælger alle div'er
+        const diver = document.querySelectorAll("div");
+        console.log(diver)
+
+        //Funktion
+        diver.forEach(div => {
+            div.addEventListener("click", marker);
+        })
+
+
+
+
+        //der skal ikke punktum foran marker, fordi der allerede står classlist, fordi den godt ved det er en klasse
+        function marker() {
+            this.classList.toggle("marker");
+        }
+    </script>
+
+</body></html>
