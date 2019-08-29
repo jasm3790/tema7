@@ -8,12 +8,16 @@
     <title>Document</title>
     <style>
         div {
-            width: 100px;
             height: 100px;
             background-color: orange;
-            display: inline-block;
-            border-radius: 50%;
+            /*            Forskellen på block og inline er at det ene er i kolonner og det andet er i række*/
             transition: .5s;
+        }
+
+        section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            grid-gap: 1em;
         }
 
         .marker {
@@ -24,11 +28,26 @@
 </head>
 
 <body>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+    <section>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+
+
+    </section>
 
 
     <script>
