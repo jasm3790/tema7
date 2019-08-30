@@ -30,8 +30,11 @@
 
         <article class="personer">
 
-            <h2>Navn Hold Github</h2>
+            <h2>Navn</h2>
             <p></p>
+            <p></p>
+            <p></p>
+
             <img class="profil-billede">
         </article>
     </template>
@@ -78,12 +81,18 @@
                 console.log(klon);
                 const h2 = klon.querySelector("h2");
                 h2.textContent = person.gsx$navn.$t;
-                h2.textContent += " hold " + person.gsx$hold.$t;
 
-                const p = klon.querySelector("p");
-                p.textContent += " Github: " + person.gsx$github.$t
+                const p1 = klon.querySelector("p");
+                const p2 = klon.querySelector("p + p");
+                const p3 = klon.querySelector("p + p + p");
 
-                p.textContent += " Alder " + person.gsx$alder.$t;
+
+                p1.textContent += " Github: " + person.gsx$github.$t
+
+                p2.textContent += " Alder " + person.gsx$alder.$t;
+
+                p3.textContent += " Hold " + person.gsx$hold.$t;
+
 
                 const img = klon.querySelector("img");
                 img.src = person.gsx$billede.$t;
