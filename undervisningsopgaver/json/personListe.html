@@ -10,14 +10,28 @@
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             grid-gap: 2rem;
         }
+
+        .personer {
+            border: 1px solid black;
+            padding: 10px;
+            background-color: pink;
+
+        }
+
+        article img {
+            width: 100%;
+        }
     </style>
 </head>
 
 <body>
+    <h1>Personer</h1>
     <template>
-        <article>
-            <h1>Person</h1>
-            <h2>Navn Hold</h2>
+
+        <article class="personer">
+
+            <h2>Navn Hold Github</h2>
+            <p></p>
             <img class="profil-billede">
         </article>
     </template>
@@ -65,7 +79,17 @@
                 const h2 = klon.querySelector("h2");
                 h2.textContent = person.gsx$navn.$t;
                 h2.textContent += " hold " + person.gsx$hold.$t;
-                h2.textContent = alder.gsx$navn.$t;
+
+                const p = klon.querySelector("p");
+                p.textContent += " Github: " + person.gsx$github.$t
+
+                p.textContent += " Alder " + person.gsx$alder.$t;
+
+                const img = klon.querySelector("img");
+                img.src = person.gsx$billede.$t;
+                img.alt = " Billede af " + person.navn;
+
+
 
 
                 //                const img = klon.querySelector("img");
