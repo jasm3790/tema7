@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <template>
+        <article>
+            <h1>Person</h1>
+            <h2>Navn Hold</h2>
+            <img class="profil-billede">
+        </article>
+    </template>
+
+    <section id="person-liste"></section>
+
+    <script>
+        let undervisereArray = []; //tomt array
+
+
+
+        document.addEventListener("DOMContentLoaded", start);
+
+        function start() {
+            hentJson();
+        }
+
+
+        //en variabel som kan indeholde den materiale vi henter
+        async function hentJson() {
+            //en const varibel herunder, det i gåseøjne angiver man hvad man vil hente
+            //Herunder henter vi data'en og i sidste linje putter vi respons ind i underviser array'et men gør det ikke færdigt
+            const response = await fetch("03-json.json");
+            console.log(response);
+            undervisereArray = await response.json();
+            console.log(undervisereArray);
+
+            //Man henter et program assynkronisk
+            visJson();
+        }
+
+        function visJson() {
+
+            const skabelon = document.querySelector("template").content;
+            const listElm = document.querySelector("#person-liste");
+            console.log(skabelon);
+
+            undervisereArray.forEach(person => {
+                //klone skabelon
+                const klon = skabelon.cloneNode(true);
+
+                console.log(klon);
+                const h2 = klon.querySelector("h2");
+                h2.textContent = person.navn;
+                h2.textContent += " Hold " + person.hold;
+                const img = klon.querySelector("img");
+                img.src = person.thumb;
+                img.alt = "Billede af " + person.navn;
+
+                listElm.appendChild(klon);
+            })
+        }
+    </script>
+</body></html>

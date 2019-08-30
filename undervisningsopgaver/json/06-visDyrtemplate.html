@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Visalle</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .dyr {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        section {
+            width: 80vw;
+            margin: 1w auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 2rem;
+
+        }
+    </style>
+</head>
+
+<body> <template>
+        <article class="dyr">
+            <h2></h2>
+            <img src="" alt="">
+            <p class="type"></p>
+            <p class="levested"></p>
+        </article>
+    </template>
+    <section id="liste"></section>
+    <script>
+        let alleDyr = [];
+
+        document.addEventListener("DOMContentLoaded", start);
+
+        function start() {
+            hentJson();
+        }
+
+
+        //en variabel som kan indeholde den materiale vi henter
+        async function hentJson() {
+            //en const varibel herunder, det i gåseøjne angiver man hvad man vil hente
+            //Herunder henter vi data'en og i sidste linje putter vi respons ind i underviser array'et men gør det ikke færdigt
+            const response = await fetch("dyrjson.json");
+            console.log(response);
+            alleDyr = await response.json();
+            console.log(alleDyr);
+
+            //Man henter et program assynkronisk
+            visJson();
+        }
+
+        function visJson() {
+
+            const skabelon = document.querySelector("template").content;
+            const listElm = document.querySelector("#liste");
+            console.log(skabelon);
+
+            alleDyr.forEach(dyr => {
+                //klone skabelon
+                const klon = skabelon.cloneNode(true);
+
+                console.log(klon);
+                const h2 = klon.querySelector("h2");
+                h2.textContent = dyr.navn;
+
+                const p = klon.querySelector("p");
+                p.textContent += " type " + dyr.type;
+                p.textContent += " levested " + dyr.levested;
+                //.textContent += " type " + dyr.type;
+                //h2.textContent += " levested " + dyr.levested;
+                const img = klon.querySelector("img");
+                img.src = dyr.billede;
+                img.alt = "Billede af " + dyr.navn;
+
+                listElm.appendChild(klon);
+            })
+        }
+    </script>
+</body></html>

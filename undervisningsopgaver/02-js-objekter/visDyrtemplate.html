@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <section id="liste">
+
+    </section>
+
+    <template>
+        <article class="dyr">
+            <h2></h2>
+            <img src="" alt="">
+            <p class="type"></p>
+            <p class="levested"></p>
+        </article>
+    </template>
+
+
+    <script>
+        let alleDyr = [{
+            navn: "gris",
+            type: "pattedyr",
+            billede: "http://mabe-kea.dk/E19/pics/pig.png",
+            levested: "svinefarme"
+        }, {
+            navn: "frø",
+            type: "amfibie",
+            billede: "http://mabe-kea.dk/E19/pics/pig.png",
+            levested: "vandhullet"
+
+        }, {
+            navn: "ræv",
+            type: "pattedyr",
+            billede: "http://mabe-kea.dk/E19/pics/pig.png",
+            levested: "skoven"
+
+        }]
+
+        document.addEventListene("DOMContentLoaded", start);
+
+        function start() {
+            visDyr();
+        }
+
+        function visDyr() {
+            const temp = document.querySelector("template");
+            const dest = document.querySelector("#article");
+
+            //Parameter
+
+            alleDyr.forEach((dyr) => {
+                const klon = temp.cloneNode(true).content;
+                //Her kloner det der står i template - altså clone node
+                //temp er template
+                //true betyder man tager indeholdet med
+                //content gør at vi tager indeholdet og ikke skallen
+
+                klon.querySelector("h2").textContent = dyr.navn;
+                klon.querySelector("img").src = dyr.billede;
+                klon.querySelector("img").alt = "Billede af " + dyr.navn;
+                klon.querySelector(".type").textContent = `Type: ${dyr.type}`;
+                klon.querySelector(".levested").textContent = `Levested: ${dyr.levested}`;
+
+                dest.appendChild(klon);
+
+
+            });
+        }
+
+    </script>
+</body>
+
+</html>
