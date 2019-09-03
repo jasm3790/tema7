@@ -25,7 +25,6 @@
             background-color: red;
         }
 
-        /*Styling af pop up vindue*/
         #detalje {
             position: fixed;
             top: 0;
@@ -33,6 +32,10 @@
             width: 100vw;
             height: 100vh;
             background: pink;
+            overflow: scroll;
+            display: none;
+
+
         }
 
         #detalje .luk {
@@ -40,6 +43,8 @@
             top: 0;
             right: 0;
             font-size: 4rem;
+            cursor: pointer;
+
         }
 
         #detalje .person {
@@ -48,6 +53,7 @@
             margin: 4rem auto;
             padding: 4rem;
             background: white;
+            cursor: pointer;
         }
 
     </style>
@@ -55,19 +61,14 @@
 
 <body>
     <h1>MMD 2019</h1>
-
-
     <nav>
         <button data-køn="alle" class="valgt">Alle</button>
         <button data-køn="k">Kvinder</button>
         <button data-køn="m">Mænd</button>
         <button data-køn="andet">Andet</button>
-
-
     </nav>
-
     <template>
-        <article class="personer">
+        <article class="person">
             <h2>Navn</h2>
             <p></p>
             <p></p>
@@ -83,8 +84,7 @@
             <h2></h2>
             <img src="" alt="">
             <p>Github:
-                <a class="githubLink" href=""></a>
-            </p>
+                <a class="githublink" href=""></a></p>
         </article>
     </section>
 
@@ -92,24 +92,22 @@
         document.addEventListener("DOMContentLoaded", start);
         const url = "https://spreadsheets.google.com/feeds/list/1Xge7slZ9dEOTCn1Yxl3OE4xgvrXOL8Y_iu3WN1yGB1U/od6/public/values?alt=json";
         let personer;
-        let filter = "k";
+        let filter = "alle";
 
-        //funktion der kaldes efter DOM er loaded
         function start() {
             const filterKnapper = document.querySelectorAll("button");
             filterKnapper.forEach(knap => knap.addEventListener("click", filtrerPersoner));
+            document.querySelector("#detalje").style.display = "none";
+
             loadData();
         }
 
-        //funktion der filtrerer personer(json)
         function filtrerPersoner() {
-            filter = this.dataset.køn; //sæt variabel "filter" til akutel værdi
-            document.querySelector(".valgt").classList.remove("valgt"); //fjern klassen valgt fra aktuel knap
+            filter = this.dataset.køn;
+            document.querySelector(".valgt").classList.remove("valgt");
             this.classList.add("valgt");
-            vis(); // kald funktionen vis igen med nyt filter
+            vis();
         }
-
-        //funktioner der henter data fra Google Sheet
 
         async function loadData() {
             const response = await fetch(url);
@@ -117,14 +115,13 @@
             vis();
         }
 
-        //funktioner der viser personer i liste view
         function vis() {
 
-            const skabelon = document.querySelector("template").content; //select indhold af html skabelon, article
+            const skabelon = document.querySelector("template").content;
             const dest = document.querySelector("#person-liste");
             dest.textContent = "";
-            personer.feed.entry.forEach(person => { //loop igennem json, personer
-                if (person.gsx$køn.$t == filter || filter == "alle") { //tjek hvilket køn personen har og sammenlign med filter og vis alle
+            personer.feed.entry.forEach(person => {
+                if (person.gsx$køn.$t == filter || filter == "alle") {
 
                     //klone skabelon
                     const klon = skabelon.cloneNode(true);
@@ -144,12 +141,34 @@
                     img.src = person.gsx$billede.$t;
                     img.alt = "Billede af " + person.navn;
 
+
+
+                    klon.querySelector(".person").addEventListener("click", () => {
+
+
+                        visDetalje(person);
+                    });
                     dest.appendChild(klon);
+
+                    //                  dest.lastElementChild.addEventListener("click", () => ) {
+                    // visDetalje(person)
+                    // }
                 }
             })
         }
 
+        //func. der viser person i detalje view
+        function visDetalje(person) {
+            document.querySelector("#detalje").style.display = "block";
+
+            document.querySelector("#detalje .luk").addEventListener("click", skjulDetalje);
+            document.querySelector("#detalje h2").textContent = person.gsx$navn.$t;
+            document.querySelector("#detalje img").src = person.gsx$navn.$t;
+            document.querySelector("#detalje img").alt = `Potræt af ${person.gsx$billede.$t}`;
+            document.querySelector("#detalje .githubLink").href = `github.com/${person.gsx$github.$t}`;
+            document.querySelector("#detalje .githubLink").href = `https://github.com/${person.gsx$github.$t}`;
+
+        }
+
     </script>
 </body>
-
-</html>
