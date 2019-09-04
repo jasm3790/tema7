@@ -1,0 +1,21 @@
+    section {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-gap: 2rem;
+    }
+
+
+
+    article img {
+        width: 100%;
+    }
+
+    .personer {
+        border: 1px solid black;
+        margin: 5px;
+        padding: 5px;
+    }
+
+    .valgt {
+        background-color: red;
+    }
