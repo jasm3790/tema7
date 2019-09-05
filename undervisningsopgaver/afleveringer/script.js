@@ -39,19 +39,17 @@ function vis() {
             const h2 = klon.querySelector("h2");
             h2.textContent = kategori.gsx$navn.$t;
 
-
-
-            const p1 = klon.querySelector("p");
-            const p2 = klon.querySelector("p + p");
-            const p3 = klon.querySelector("p + p + p");
-
             const img = klon.querySelector("img");
             img.src = "imgs/small/" + kategori.gsx$billede.$t + "-sm.jpg";
             img.alt = "Billede af " + kategori.gsx$navn.$t;
 
-            p1.textContent = " pris " + kategori.gsx$pris.$t;
-            p2.textContent += " kort " + kategori.gsx$kort.$t;
-            p3.textContent += " oprindelse " + kategori.gsx$oprindelse.$t;
+            const p1 = klon.querySelector("p");
+            const p2 = klon.querySelector("p + p");
+            const p3 = klon.querySelector("p + p + p");
+            const p4 = klon.querySelector("p + p + p + p");
+            p1.textContent = " Pris: " + kategori.gsx$pris.$t + ",-";
+            p2.textContent += "" + kategori.gsx$kort.$t;
+            p3.textContent += " Oprindelse: " + kategori.gsx$oprindelse.$t;
 
 
 
@@ -73,8 +71,9 @@ function visDetalje(kategori) {
 
     document.querySelector("#detalje h2").textContent = kategori.gsx$navn.$t;
     document.querySelector("#detalje img").src = "imgs/large/" + kategori.gsx$billede.$t + ".jpg";
-    document.querySelector("detalje img").alt = `Portræt af ${kategori.gsx$billede.$t}`;
-    //document.querySelector("detalje p").textContent = kategori.gsx$pris.$t;
+    document.querySelector("#detalje img").alt = `Portræt af ${kategori.gsx$billede.$t}`;
+
+    document.querySelector("#detalje p").textContent = kategori.gsx$lang.$t;
 
     //    document.querySelector("#detalje .githubLink").href = `https: //github.com/${person.gsx$github.$t}`;
     //    document.querySelector("#detalje .githubLink").textContent = `github.com /${person.gsx$github.$t}`;
