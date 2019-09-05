@@ -4,6 +4,13 @@
        grid-gap: 2rem;
    }
 
+   h1 {
+       text-align: center;
+       color: black;
+       font-family: sans-serif;
+       font-size: 3rem;
+   }
+
    article img {
        width: 100%;
    }
@@ -29,7 +36,7 @@
        left: 0;
        width: 100vw;
        height: 100vh;
-       background: pink;
+       background: white;
        overflow: scroll;
        display: none;
 
@@ -43,7 +50,7 @@
        font-size: 4rem;
    }
 
-   #detalje .person {
+   #detalje .kategori {
        width: 60vw;
        min-height: 50vh;
        margin: 4rem auto;
