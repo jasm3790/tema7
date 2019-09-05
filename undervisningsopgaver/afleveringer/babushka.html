@@ -4,22 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Bistro Babsuhka</h1>
-
+    <h1>Bistro Babushka</h1>
     <nav>
-        <button data-køn="alle" class="valgt">Alle</button>
-        <button data-køn="foretter">Foretter</button>
-        <button data-køn="hovedretter">Hovedretter</button>
-        <button data-køn="desserter">Desserter</button>
-        <button data-køn="drikke">Drikkevarer</button>
-        <button data-køn="sideorder">Sideorder</button>
+        <button data-kategori="alle" class="valgt">Alle</button>
+        <button data-kategori="forretter">Forretter</button>
+        <button data-kategori="hovedretter">Hovedretter</button>
+        <button data-kategori="desserter">Desserter</button>
+        <button data-kategori="sideorders">Sideorders</button>
+        <button data-kategori="drikkevarer">Drikkevarer</button>
+
 
     </nav>
-
     <template>
         <article class="kategori">
             <h2>Navn</h2>
@@ -30,8 +29,14 @@
         </article>
     </template>
 
-    <section id="babushka-bistro"></section>
+    <section id="mad-liste"></section>
+    <section id="detalje">
+        <article class="kategori">
+            <button class="luk">X</button>
+            <h2></h2>
+            <img src="" alt="">
+        </article>
+    </section>
 
+    <script src="script.js"></script>
 </body>
-
-</html>

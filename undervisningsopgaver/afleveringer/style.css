@@ -1,21 +1,52 @@
-    section {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        grid-gap: 2rem;
-    }
+   section {
+       display: grid;
+       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+       grid-gap: 2rem;
+   }
+
+   article img {
+       width: 100%;
+   }
+
+   .kategori {
+       border: 1px solid black;
+       margin: 5px;
+       padding: 15px;
+   }
+
+   .valgt {
+       background-color: pink;
+   }
+
+   nav {
+       padding: 5px;
+       text-align: center;
+   }
+
+   #detalje {
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 100vw;
+       height: 100vh;
+       background: pink;
+       overflow: scroll;
+       display: none;
 
 
+   }
 
-    article img {
-        width: 100%;
-    }
+   #detalje .luk {
+       position: fixed;
+       top: 0;
+       right: 0;
+       font-size: 4rem;
+   }
 
-    .personer {
-        border: 1px solid black;
-        margin: 5px;
-        padding: 5px;
-    }
-
-    .valgt {
-        background-color: red;
-    }
+   #detalje .person {
+       width: 60vw;
+       min-height: 50vh;
+       margin: 4rem auto;
+       padding: 4rem;
+       background: white;
+   }
